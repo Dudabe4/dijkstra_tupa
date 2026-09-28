@@ -85,27 +85,18 @@ def main():
 
     destino = input("Digite o nó de destino: ").strip().upper()
 
+    caminho, distancia_total = dijkstra(
+        grafo,
+        origem,
+        destino
+    )
 
-    if origem not in nos_validos:
-        print(f"Erro: o nó de origem '{origem}' não existe no grafo.")
-
-    elif destino not in nos_validos:
-        print(f"Erro: o nó de destino '{destino}' não existe no grafo.")
-
-    else:
-
-        caminho, distancia_total = dijkstra(
-            grafo,
-            origem,
-            destino
-        )
-
-        mostrar_resultado(
-            origem,
-            destino,
-            caminho,
-            distancia_total
-        )
+    mostrar_resultado(
+        origem,
+        destino,
+        caminho,
+        distancia_total
+    )
 
 if __name__ == "__main__":
     main()
