@@ -11,10 +11,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 CREDENTIALS_FILE = BASE_DIR / "credentials" / "credentials.json"
 
 # ID da Google Planilha
-SPREADSHEET_ID = "1pGlO6cT59_Fycrt_LUcETAkyXSqaHrbcN7-_RIA-k3E"
+SPREADSHEET_ID = "1zeMWMU6evxUITpNCUEt6Yy7V97lBqIgllDI-EFSUrSg"
 
 # Nome da aba da planilha
-SHEET_NAME = "Página1"
+SHEET_NAME = "Nos-Dijkstra"
 
 # Permissão utilizada neste primeiro teste:
 # somente leitura.
