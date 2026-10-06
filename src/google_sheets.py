@@ -12,7 +12,7 @@ CREDENTIALS_FILE = BASE_DIR / "credentials" / "credentials.json"
 SPREADSHEET_ID = "1zeMWMU6evxUITpNCUEt6Yy7V97lBqIgllDI-EFSUrSg"
 
 # Nome da aba da planilha
-SHEET_NAME = "Nos-Dijkstra"
+SHEET_NAME = "Nós-Dijkstra"
 
 # Permissão utilizada neste primeiro teste:
 # somente leitura.
