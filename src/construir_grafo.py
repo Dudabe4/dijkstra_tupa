@@ -18,7 +18,7 @@ def construir_grafo(dados):
     conexoes = {}
 
     # Ignora a primeira linha, que contém os cabeçalhos
-    for numero_linha, linha in enumerate(dados[1:], start=2):
+    for numero_linha, linha in enumerate(dados, start=2):
 
         # Ignora linhas vazias ou incompletas
         if len(linha) < 3:
