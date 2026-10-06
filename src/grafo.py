@@ -113,42 +113,6 @@ componentes_por_no = {
 }
 
 
-# Tamanho de B para D? 
-#            D para J? 
-#            H para L? 
-#            I para J?
-#            K para P? 
-#            N para R?
-#            S1 para S3?
-#            R para T?
-# 
-# 1 e 2 se ligam em B, 
-#                   C, 
-#                   E, 
-#                   F, 
-#                   G, 
-#                   H, 
-#                   I, 
-#                   J, 
-#                   K, 
-#                   M, 
-#                   P, 
-#                   Q, 
-#                   R, 
-#                   S,
-#                   T
-# 
-# Existe K1 para I1?
-#        M2 para L2? 
-#        S1 para S3?
-#        U3 para L2?
-#        Y2?
-# 
-# Pq ta diferente R para S?
-# 
-# Tudo simétrico?
-# 
-# O inverso ta certo?
 
 grafo = {
     "A1": [

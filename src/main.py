@@ -1,102 +1,59 @@
-from grafo import grafo, componentes_por_no
+from google_sheets import ler_planilha
+from construir_grafo import construir_grafo
 from dijkstra import dijkstra
 
 
-def mostrar_resultado(origem, destino, caminho, distancia_total):
+
+def mostrar_resultado(caminho, distancia):
     """
-    # mostrar_resultado
-
-    Exibe o resultado do algoritmo.
-
-    A funcao recebe a origem, o destino, o caminho encontrado
-    e a distancia total calculada pelo algoritmo de Dijkstra.
-
-    Args:
-        origem: no inicial do caminho.
-    
-        destino: no final do caminho.
-
-        caminho: lista de nos do caminho encontrado, na ordem
-                 em que devem ser percorridos.
-
-        distancia_total: custo total do caminho encontrado.
-
-    Returns:
-        None: Sao apenas exibidas informacoes
-
-    Caso exista um caminho, sao exibidos:
-        - o no de origem;
-        - o no de destino;
-        - a sequencia de nos percorridos;
-        - o comprimento total do caminho.
-
-    Caso nenhum caminho seja encontrado, a funcao informa
-    essa situacao e encerra a exibicao do resultado.
+    Exibe o resultado do caminho mínimo.
     """
-
-    print()
-    print("========== RESULTADO ==========")
-
-    print(f"Origem: {origem}")
-
-    print(f"Destino: {destino}")
-
 
     if caminho is None:
-        print("Nenhum caminho foi encontrado.")
+        print("\nNenhum caminho encontrado.")
         return
 
-
-    print("Caminho encontrado:")
-
-
-    print(" -> ".join(caminho))
-
-
-    print(f"Comprimento total: {distancia_total:.2f} mm")
-
-    print("================================")
-    print()
+    print("\n========== RESULTADO ==========")
+    print(f"Caminho: {' -> '.join(caminho)}")
+    print(f"Comprimento total: {distancia:.2f} mm")
+    print("===============================")
 
 
 def main():
-    """
-    # Main 
 
-    Funcao principal do programa.
+    # Leitura da Google Sheets
+    dados = ler_planilha()
 
-    Responsavel por:
-        - obter os nos validos do grafo;
-        - exibir o cabecalho do programa;
-        - receber a origem e o destino pelo terminal;
-        - normalizar as entradas do usuario;
-        - verificar se os nos informados existem;
-        - executar o algoritmo de Dijkstra;
-        - exibir o resultado encontrado.
-    """
+    # Construção automática do grafo
+    grafo = construir_grafo(dados)
 
-
+    # Nós disponíveis no grafo
     nos_validos = set(grafo.keys())
 
     print("========== DIJKSTRA ==========")
 
-
     origem = input("Digite o nó de origem: ").strip().upper()
-
     destino = input("Digite o nó de destino: ").strip().upper()
 
-    caminho, distancia_total = dijkstra(
+    # Verificação dos nós
+    if origem not in nos_validos:
+        print(f"\nErro: o nó '{origem}' não existe no grafo.")
+        return
+
+    if destino not in nos_validos:
+        print(f"\nErro: o nó '{destino}' não existe no grafo.")
+        return
+
+    # Execução do Dijkstra
+    caminho, distancia = dijkstra(
         grafo,
         origem,
         destino
     )
 
-    mostrar_resultado(
-        origem,
-        destino,
-        caminho,
-        distancia_total
-    )
+    # Exibição do resultado
+    mostrar_resultado(caminho, distancia)
+
 
 if __name__ == "__main__":
     main()
