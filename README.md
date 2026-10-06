@@ -11,3 +11,5 @@ Iniciado em *09/09/2026*
 ## Documentações de cada versão feita da implementação
 
 - [Versão 1 - inicial](log/doc_v1.md)
+- [Versão 2 - modularização e implementação externa de entrada](log/doc_v2.md)
+- [Versão 3 - implementação de custos adicionais](log/doc_v3.md)
