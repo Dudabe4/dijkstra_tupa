@@ -1,5 +1,5 @@
-from google_sheets import ler_planilha
-from configs import Configuracoes
+from google_sheets_nodes import ler_planilha
+from configs.configs import Configuracoes
 from construir_grafo import construir_grafo
 from dijkstra import dijkstra
 from validacao import validar_nos, validar_pesos, validar_simetria
