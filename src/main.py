@@ -189,10 +189,22 @@ def main():
     print("Dados carregados com sucesso.")
 
     print("\nValidando grafo...")
-    validar_nos(grafo)
-    validar_pesos(grafo)
-    validar_simetria(grafo)
-    print("Validação concluída.")
+
+    erros = []
+    erros.extend(validar_nos(grafo))
+    erros.extend(validar_pesos(grafo))
+    erros.extend(validar_simetria(grafo))
+
+    if erros:
+        print("\nForam encontrados problemas no grafo:")
+
+        for erro in erros:
+            print(f"- {erro}")
+
+        print("\nCorrija os problemas antes de continuar.")
+        return
+
+    print("Todas as validações do grafo foram aprovadas.")
 
     print(f"Nós no grafo: {len(grafo)}")
     print(f"Conexões físicas: {len(dados_grafo)}")
