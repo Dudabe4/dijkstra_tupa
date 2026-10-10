@@ -10,6 +10,8 @@ from roteamento_sinais import (
     resultados_para_planilha
 )
 
+from configs.terminal import titulo, sucesso, aviso, error, info
+
 
 def atualizar_utilizacao(utilizacao, caminho):
     """
@@ -49,18 +51,19 @@ def executar_modo_manual(grafo, configuracoes):
 
         # Validar os nós informados
         if origem not in grafo:
-            print(f"\nErro: a origem '{origem}' não existe no grafo.")
+            print(" ")
+            error(f"Erro: a origem '{origem}' não existe no grafo.")
             continue
 
         if intermediario != "-" and intermediario not in grafo:
-            print(
-                f"\nErro: o nó intermediário "
-                f"'{intermediario}' não existe no grafo."
-            )
+            print(" ")
+            error(f"Erro: o nó intermediário ")
+            error(f"'{intermediario}' não existe no grafo.")
             continue
 
         if destino not in grafo:
-            print(f"\nErro: o destino '{destino}' não existe no grafo.")
+            print(" ")
+            error(f"Erro: o destino '{destino}' não existe no grafo.")
             continue
 
         try:
@@ -85,10 +88,9 @@ def executar_modo_manual(grafo, configuracoes):
                 )
 
                 if caminho_1 is None:
-                    print(
-                        f"\nNão existe caminho entre {origem} "
-                        f"e {intermediario}."
-                    )
+                    print(" ")
+                    error(f"Não existe caminho entre {origem} ")
+                    error(f"e {intermediario}.")
                     continue
 
                 # Segundo trecho: intermediário -> destino
@@ -101,10 +103,9 @@ def executar_modo_manual(grafo, configuracoes):
                 )
 
                 if caminho_2 is None:
-                    print(
-                        f"\nNão existe caminho entre {intermediario} "
-                        f"e {destino}."
-                    )
+                    print(" ")
+                    error("Não existe caminho entre {intermediario} ")
+                    error(f"e {destino}.")
                     continue
 
                 # Unir os caminhos sem repetir o intermediário
@@ -114,25 +115,30 @@ def executar_modo_manual(grafo, configuracoes):
                 distancia_fisica = distancia_1 + distancia_2
 
         except (ValueError, KeyError, TypeError) as erro:
-            print(f"\nErro ao calcular a rota: {erro}")
+            print(" ")
+            error(f"Erro ao calcular a rota: {erro}")
             continue
 
-        print("\n----------------------------------------")
-        print("              RESULTADO")
-        print("----------------------------------------")
+        print(" ")
+        titulo("-------------------------------------")
+        titulo("           RESULTADO")
+        titulo("-------------------------------------")
+        print(" ")
 
         if caminho is None:
-            print(f"\nNão existe caminho entre {origem} e {destino}.")
+            print(" ")
+            error(f"Não existe caminho entre {origem} e {destino}.")
             continue
 
         caminho_principal = configuracoes.caminho_principal
 
         if caminho == caminho_principal or caminho == caminho_principal[::-1]:
-            print(" -> ".join(caminho) + " (caminho principal)")
+            info(" -> ".join(caminho) + " (caminho principal)")
         else:
-            print(" -> ".join(caminho))
+            info(" -> ".join(caminho))
 
-        print(f"\nDistância física: {distancia_fisica:.2f} mm")
+        print(" ")
+        print(f"Distância física: {distancia_fisica:.2f} mm")
         print(f"Custo Dijkstra: {custo_dijkstra:.2f}")
 
         # Atualizar utilização após calcular a rota completa
@@ -154,7 +160,7 @@ def executar_modo_automatico(grafo, configuracoes):
         print("\nLendo sinais da aba 'Sinais'...")
         sinais = ler_sinais()
 
-        print(f"Quantidade de sinais lidos: {len(sinais)}")
+        sucesso(f"Quantidade de sinais lidos: {len(sinais)}")
         print("Calculando rotas...")
 
         resultados, utilizacao = processar_sinais(
@@ -168,17 +174,19 @@ def executar_modo_automatico(grafo, configuracoes):
         print("Gravando resultados na aba 'Resultados'...")
         escrever_resultados(tabela)
 
-        print("Resultados gravados com sucesso!")
+        sucesso("Resultados gravados com sucesso!")
 
     except Exception as erro:
-        print("\nNão foi possível concluir o modo automático.")
-        print(f"Erro: {erro}")
+        print(" ")
+        error("Não foi possível concluir o modo automático.")
+        error(f"Erro: {erro}")
 
 
 def main():
-    print("\n========================================")
-    print("           ROTEAMENTO DIJKSTRA")
-    print("========================================")
+    print(" ")
+    titulo("=====================================")
+    titulo("        ROTEAMENTO DIJKSTRA")
+    titulo("=====================================")
 
     print("\nLendo configurações e grafo...")
 
@@ -186,7 +194,7 @@ def main():
     configuracoes = Configuracoes(configuracoes_brutas)
     grafo = construir_grafo(dados_grafo)
 
-    print("Dados carregados com sucesso.")
+    sucesso("Dados carregados com sucesso.")
 
     print("\nValidando grafo...")
 
@@ -196,20 +204,23 @@ def main():
     erros.extend(validar_simetria(grafo))
 
     if erros:
-        print("\nForam encontrados problemas no grafo:")
+        print(" ")
+        error("Foram encontrados problemas no grafo:")
 
         for erro in erros:
-            print(f"- {erro}")
+            error(f"- {erro}")
 
         print("\nCorrija os problemas antes de continuar.")
         return
 
-    print("Todas as validações do grafo foram aprovadas.")
+    sucesso("Todas as validações do grafo foram aprovadas.")
+    print(" ")
 
     print(f"Nós no grafo: {len(grafo)}")
     print(f"Conexões físicas: {len(dados_grafo)}")
 
-    print("\nConfigurações:")
+    print(" ")
+    titulo("Configurações:")
     print(
         f"Fator caminho principal: "
         f"{configuracoes.fator_caminho_principal}"
@@ -224,9 +235,10 @@ def main():
     )
 
     while True:
-        print("\n========================================")
-        print("               MENU")
-        print("========================================")
+        print(" ")
+        titulo("=====================================")
+        titulo("               MENU")
+        titulo("=====================================")
         print("1 - Roteamento manual")
         print("2 - Roteamento automático pela planilha")
         print("0 - Sair")
@@ -240,11 +252,13 @@ def main():
             executar_modo_automatico(grafo, configuracoes)
 
         elif opcao == "0":
-            print("\nPrograma encerrado.")
+            print(" ")
+            aviso("Programa encerrado.")
             break
 
         else:
-            print("\nOpção inválida. Escolha 1, 2 ou 0.")
+            print(" ")
+            error("Opção inválida. Escolha 1, 2 ou 0.")
 
 
 if __name__ == "__main__":
