@@ -133,9 +133,9 @@ def executar_modo_manual(grafo, configuracoes):
         caminho_principal = configuracoes.caminho_principal
 
         if caminho == caminho_principal or caminho == caminho_principal[::-1]:
-            info(" -> ".join(caminho) + " (caminho principal)")
+            sucesso(" -> ".join(caminho) + " (caminho principal)")
         else:
-            info(" -> ".join(caminho))
+            sucesso(" -> ".join(caminho))
 
         print(" ")
         print(f"Distância física: {distancia_fisica:.2f} mm")
@@ -161,6 +161,7 @@ def executar_modo_automatico(grafo, configuracoes):
         sinais = ler_sinais()
 
         sucesso(f"Quantidade de sinais lidos: {len(sinais)}")
+        print(" ")
         print("Calculando rotas...")
 
         resultados, utilizacao = processar_sinais(
@@ -220,7 +221,7 @@ def main():
     print(f"Conexões físicas: {len(dados_grafo)}")
 
     print(" ")
-    titulo("Configurações:")
+    info("Configurações:")
     print(
         f"Fator caminho principal: "
         f"{configuracoes.fator_caminho_principal}"
