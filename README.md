@@ -6,6 +6,7 @@ Essa é uma tentativa de implementação do algoritimo Dijkstra na otimização 
 Por **Maria Eduarda Bronzatto Esbízaro**, estudante da EESC-USP.
 
 Iniciado em *09/09/2026*
+
 Finalizada a versão principal (v.4) em *09/10/2026*
 
 
