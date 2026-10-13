@@ -1,11 +1,12 @@
 # dijkstra_tupa
 
-Essa é uma tentativa de implementação do algoritimo Dijkstra na otimização do chicote elétrico do carro T11 do Tupã para a competição da Fórmula SAE.
+Essa é uma tentativa de implementação do algoritimo Dijkstra na otimização do chicote elétrico do carro T11 do Tupã para a competição da Fórmula SAE - elétrica, e sua integração com o Mapa de Sinais.
 
 
-Por **Maria Eduarda Bronzatto Esbízaro**, estudante da USP.
+Por **Maria Eduarda Bronzatto Esbízaro**, estudante da EESC-USP.
 
 Iniciado em *09/09/2026*
+Finalizada a versão principal (v.4) em *09/10/2026*
 
 
 ## Documentações de cada versão feita da implementação
