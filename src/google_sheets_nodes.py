@@ -144,6 +144,58 @@ def ler_planilha():
     return configuracoes, dados_grafo
 
 
+
+def ler_componentes_nos():
+    """
+    Lê o cadastro E:F da aba Nós-Dijkstra.
+
+    A coluna E contém o nó e a F contém um ou mais componentes,
+    separados por ponto e vírgula.
+
+    Retorna um dicionário {componente: no}. Não altera a planilha.
+    """
+    servico = conectar_google_sheets()
+    intervalo = f"'{SHEET_NAME}'!E13:F"
+
+    resultado = (
+        servico.spreadsheets()
+        .values()
+        .get(spreadsheetId=SPREADSHEET_ID, range=intervalo)
+        .execute()
+    )
+
+    componentes_nos = {}
+
+    for numero_linha, linha in enumerate(resultado.get("values", []), start=13):
+        no = linha[0].strip() if len(linha) >= 1 else ""
+        componentes = linha[1].strip() if len(linha) >= 2 else ""
+
+        if not no and not componentes:
+            continue
+
+        if not no or not componentes:
+            raise ValueError(
+                f"Cadastro incompleto em Nós-Dijkstra, linha {numero_linha}: "
+                f"nó={no!r}, componentes={componentes!r}"
+            )
+
+        for componente_bruto in componentes.split(";"):
+            componente = componente_bruto.strip()
+            if not componente:
+                continue
+
+            if componente in componentes_nos:
+                raise ValueError(
+                    f"Componente {componente!r} repetido no cadastro "
+                    f"(linha {numero_linha})."
+                )
+
+            componentes_nos[componente] = no
+
+    return componentes_nos
+
+
+
 def main():
 
     configuracoes, dados_grafo = ler_planilha()
