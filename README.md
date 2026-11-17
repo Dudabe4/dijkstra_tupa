@@ -12,6 +12,17 @@ Finalizada a versão principal (v.4) em *09/10/2026*
 **Versão atual:** V5 — automação e sincronização das planilhas.
 
 
+## Documentação e Guia de Uso
+
+Para facilitar a utilização e manutenção do algoritmo pelas próximas equipes da TUPÃ, foi desenvolvido um guia completo com as instruções necessárias para configurar e executar o projeto.
+
+O documento apresenta o passo a passo de instalação, configuração da Google Sheets API, conexão com o Mapa de Sinais, execução do Dijkstra, interpretação dos resultados e atualização dos dados para os próximos carros.
+
+- [How To - Dijkstra TUPÃ](docs/HOW_TO_DIJKSTRA_TUPA.md)
+
+Recomenda-se a leitura do guia antes da primeira execução ou de qualquer alteração na configuração do projeto.
+
+
 ## Execução do projeto
 
 O projeto possui dois scripts de execução na pasta principal, com finalidades diferentes.
