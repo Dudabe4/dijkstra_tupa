@@ -23,9 +23,9 @@ O método utilizado é o **Dijkstra**, que busca o caminho de menor custo em uma
 
 Para uma passagem do nó `u` ao nó `v`, o custo considerado é:
 
-\[
-c(u,v) = d(u,v)\,f(u,v) + \lambda\,U(v) + P(u,v)
-\]
+$$
+c(u,v) = d(u,v) \cdot f(u,v) + \lambda \cdot U(v) + P(u,v)
+$$
 
 Onde:
 
@@ -37,9 +37,9 @@ Onde:
 
 O custo total da rota é a soma dos custos das transições. Já a distância física é calculada separadamente:
 
-\[
+$$
 L(R) = \sum_{(u,v)\in R} d(u,v)
-\]
+$$
 
 Assim, uma rota fisicamente maior pode ser escolhida quando apresenta custo configurado menor. O programa também permite um ponto intermediário obrigatório, calculando dois trechos e unindo os caminhos sem duplicar esse nó.
 
@@ -69,9 +69,9 @@ Nos registros pareados, foram observadas **nove alterações de origem**, **nove
 
 A redução percentual é calculada por:
 
-\[
-\text{Redução (\%)} = 100\times\frac{\sum L_{TX}-\sum L_{T11}}{\sum L_{TX}}
-\]
+$$
+\text{Redução (\%)} = 100 \times \frac{\sum L_{TX} - \sum L_{T11}}{\sum L_{TX}}
+$$
 
 Essa é uma **razão entre os comprimentos totais**, não uma média simples dos percentuais de cada sinal.
 
@@ -116,7 +116,7 @@ Esses exemplos ilustram tanto a eliminação de desvios quanto a escolha de traj
 
 ## 8. Validação do código-fonte e do funcionamento
 
-Na inspeção do pacote `dijkstra(3).zip`, foram identificados os módulos de grafo, cálculo de rotas, configurações, integração e auditoria V5. A análise anterior registrou **26 arquivos Python compilados sem erro de sintaxe** e **quatro casos sintéticos básicos executados com sucesso**. Essas evidências são limitadas ao escopo examinado e não constituem certificação de todos os cenários.
+Na inspeção do pacote `dijkstra.zip`, foram identificados os módulos de grafo, cálculo de rotas, configurações, integração e auditoria V5. A análise anterior registrou **26 arquivos Python compilados sem erro de sintaxe** e **quatro casos sintéticos básicos executados com sucesso**. Essas evidências são limitadas ao escopo examinado e não constituem certificação de todos os cenários.
 
 | Componente | Funcionamento observado |
 |---|---|
@@ -156,7 +156,7 @@ Foram observadas **seis tags exclusivas do TX**, **quatro do T11** e pares de si
 | Sincronização V5 e backup | Sustentados pelo log e pela simulação posterior sem pendências. |
 | O Dijkstra sozinho causou 13,25% de economia | **Não isolado** em comparação experimental controlada. |
 | O T11 físico economizará 65,92 m de cabo | **Não demonstrado**: geometria final e vias físicas ainda não estão consolidadas. |
-| Todos os sinais e a Fase 1 final estão liberados | **Não demonstrado**: permanecem sinais manuais, pendências e alertas. |
+| Todos os sinais estão liberados | **Não demonstrado**: permanecem sinais manuais, pendências e alertas. |
 | Economia de massa, custo ou tempo de montagem | **Não quantificada** com os dados disponíveis. |
 
 ## 12. Conclusão para apresentação à Fórmula SAE
@@ -169,10 +169,10 @@ A apresentação deve deixar claro que o ganho é **histórico e amostral**, que
 
 ## 13. Fontes e rastreabilidade
 
-1. `Mapa de Sinais - TX (1).xlsx` — `Database`, geometria e rotas.
-2. `Mapa de Sinais - T11 (4).xlsx` — `Database`, `Nós-Dijkstra`, `Resultados-Dijkstra` e `Sinais-Dijkstra`.
+1. `Mapa de Sinais - TX.xlsx` — `Database`, geometria e rotas.
+2. `Mapa de Sinais - T11.xlsx` — `Database`, `Nós-Dijkstra`, `Resultados-Dijkstra` e `Sinais-Dijkstra`.
 3. `Validacao_Tecnica_Dijkstra_TUPA_TX_T11.md` — auditoria quantitativa e ressalvas metodológicas.
-4. `dijkstra(3).zip` — código-fonte V5, cálculo, roteamento, integração e auditoria.
-5. Registros de terminal apresentados pela equipe — 104 atualizações, backup, conferência, nova simulação e cópia de revisão da Fase 1.
+4. `dijkstra.zip` — código-fonte V5, cálculo, roteamento, integração e auditoria.
+5. Registros de terminal apresentados pela equipe — 104 atualizações, backup, conferência, nova simulação.
 
 > **Nota de controle documental:** “verificado” se refere às evidências citadas. Onde não houve execução controlada ou medição física, a conclusão está delimitada explicitamente.
