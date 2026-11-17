@@ -70,20 +70,6 @@ Leia o resumo das alterações. Se estiver correto, digite APLICAR V5. O program
 
 Verifique Database, Sinais-Dijkstra e Resultados-Dijkstra. O terminal deve indicar as abas sincronizadas e zero células pendentes após uma atualização bem-sucedida. Revise caminhos fisicamente, sobretudo quando houver penalizações, sinais manuais ou rotas não resolvidas.
 
-A Fase 1 T11 pode ser gerada como prévia pelo módulo integrado, quando presente:
-
-```bash
-python -m src.automatizacao_v5 --fase1
-```
-
-Para criar uma cópia de revisão (sem substituir a Fase 1 original), quando esse módulo estiver instalado:
-
-```bash
-python -m src.automatizacao_v5 --criar-revisao-fase1
-```
-
-A geração das Fases 1 e 2 não deve ser presumida a partir do comando V5 padrão: confira quais módulos estão disponíveis na versão clonada.
-
 ## 7. Se algo não funcionar
 
 Erro de credenciais: confira credentials/credentials.json. Erro 403: confira API habilitada e compartilhamento com client_email. Erro de ambiente: ative ambiente_tupa e instale dependências. Aba não encontrada: confira nomes e ID da planilha. Antes de repetir uma escrita interrompida, confira backups e estado das abas.
@@ -108,10 +94,7 @@ Depois do roteamento, o programa calcula separadamente a distância física de c
 | Sinais-Dijkstra                        | A:D                          | Reescreve a faixa de sinais automáticos gerada pelo fluxo V5.                                                  |
 | Resultados-Dijkstra                    | A:I                          | Reescreve a faixa de resultados calculados.                                                                    |
 | Nós-Dijkstra e cadastro de componentes | Somente leitura              | Fornecem o grafo, distâncias, parâmetros e associação entre componentes e nós.                                 |
-| Fase 1 original                        | Não alterada pela V5 padrão  | A extensão opcional T11 gera CSV e pode criar uma aba separada de revisão, mediante confirmação.               |
-| Fase 2                                 | Não automatizada neste fluxo | Não presumir atualização da Fase 2 pela V5.                                                                    |
 
-Atenção: a extensão de Fase 1 utilizada na equipe foi desenvolvida depois do conjunto principal do repositório. Confirme que os arquivos-fonte dessa extensão estão presentes na versão clonada antes de usar --fase1 ou --criar-revisao-fase1.
 
 ## 10. Guia rápido dos arquivos da pasta
 
@@ -127,7 +110,7 @@ Atenção: a extensão de Fase 1 utilizada na equipe foi desenvolvida depois do 
 
 - **src/integracao_v5.py e src/automatizacao_v5.py —** Conectam o cálculo à planilha e coordenam a simulação, os backups e a atualização.
 
-- **src/google_sheets\_\*.py —** Fazem a leitura e a comunicação com o Google Sheets.
+- **src/google_sheets\_\.py —** Fazem a leitura e a comunicação com o Google Sheets.
 
 - **relatorios/ —** Guarda arquivos de auditoria e prévias, quando gerados.
 
@@ -199,15 +182,6 @@ Uma execução concluída deve mostrar as abas sincronizadas e zero células pen
 python -m src.automatizacao_v5
 ```
 
-### 8. Gerar a revisão da Fase 1 (opcional)
-
-Apenas se os módulos de Fase 1 estiverem instalados no repositório. A prévia não escreve; a criação de revisão solicita confirmação e produz uma aba separada.
-
-```bash
-python -m src.automatizacao_v5 --fase1
-python -m src.automatizacao_v5 --criar-revisao-fase1
-```
-
 ## 13. Como saber se deu certo?
 
 Exemplo real de saída após a sincronização do T11 (os números mudam a cada carro):
@@ -253,10 +227,9 @@ Atenção: “sincronizada” significa que os dados calculados coincidem com os
 
 - Guardar data, versão/commit do GitHub, cópia do mapa e relatório de execução.
 
-- Verificar que os módulos da Fase 1 estão presentes como .py; não assumir que a Fase 2 já está automatizada.
 
 ## 16. O que nunca fazer
 
 Não publicar credentials.json no GitHub; não copiar rotas antigas para um novo carro sem revisar a geometria; não executar --aplicar sem conferir a planilha alvo; não interpretar um caminho calculado como aprovado para fabricação sem validação física.
 
-Referências: README e scripts executar.sh / executar++.sh do ZIP dijkstra(3), How To anterior e execução V5 relatada pela equipe. A instalação da Fase 1 é opcional e depende dos arquivos adicionais estarem no clone.
+Referências: README e scripts executar.sh / executar++.sh do ZIP dijkstra, How To anterior e execução V5 relatada pela equipe. A instalação da Fase 1 é opcional e depende dos arquivos adicionais estarem no clone.
