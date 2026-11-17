@@ -70,7 +70,7 @@ Nos registros pareados, foram observadas **nove alterações de origem**, **nove
 A redução percentual é calculada por:
 
 $$
-\text{Redução (\%)} = 100 \times \frac{\sum L_{TX} - \sum L_{T11}}{\sum L_{TX}}
+\text{Redução (percent)} = 100 \times \frac{\sum L_{TX} - \sum L_{T11}}{\sum L_{TX}}
 $$
 
 Essa é uma **razão entre os comprimentos totais**, não uma média simples dos percentuais de cada sinal.
