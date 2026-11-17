@@ -22,6 +22,12 @@ O documento apresenta o passo a passo de instalação, configuração da Google 
 
 Recomenda-se a leitura do guia antes da primeira execução ou de qualquer alteração na configuração do projeto.
 
+Também possui um documento de validação desenvolvido para registrar e justificar tecnicamente o funcionamento do algoritmo e os resultados obtidos na evolução TX × T11.
+
+Inclui a análise matemática do roteamento, a verificação dos caminhos, a comparação dos comprimentos dos sinais, a avaliação do código-fonte e as evidências de execução e integração com o Google Sheets.
+
+- [Validação Técnica - Dijkstra TUPÃ](docs/VALIDACAO_TECNICA_DIJKSTRA_TUPA.md)
+
 
 ## Execução do projeto
 
